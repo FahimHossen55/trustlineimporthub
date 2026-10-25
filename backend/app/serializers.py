@@ -3,6 +3,10 @@ from .models import Flyer, Product
 
 
 def img_url(name: str) -> str:
+    if not name:
+        return ""
+    if name.startswith("http://") or name.startswith("https://"):
+        return name
     return f"/uploads/{name}"
 
 

@@ -3,6 +3,7 @@
 Usage:
   python setup_owner.py [username] [password]
 """
+import os
 import sys
 from sqlalchemy import select
 from app.database import Base, SessionLocal, engine
@@ -11,9 +12,9 @@ from app.security import hash_password
 
 def main():
     Base.metadata.create_all(bind=engine)
-    username = sys.argv[1] if len(sys.argv) > 1 else "shahin"
-    password = sys.argv[2] if len(sys.argv) > 2 else "Shahin@2026!"
-    full_name = "Shahin Perveg"
+    username = sys.argv[1] if len(sys.argv) > 1 else os.getenv("ADMIN_USERNAME", "shahin")
+    password = sys.argv[2] if len(sys.argv) > 2 else os.getenv("ADMIN_PASSWORD", "Shahin@2026!")
+    full_name = os.getenv("ADMIN_FULL_NAME", "Shahin Perveg")
 
     db = SessionLocal()
     try:

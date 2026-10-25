@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: trustline-import-hub
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install -r backend/requirements.txt"
+    startCommand: "cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: TOKEN_EXPIRE_MINUTES
+        value: "120"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: CLOUDINARY_URL
+        sync: false
+      - key: CLOUDINARY_FOLDER
+        value: "trustline"
+      - key: ADMIN_USERNAME
+        value: "shahin"
+      - key: ADMIN_PASSWORD
+        sync: false

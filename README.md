@@ -34,9 +34,8 @@ python setup_owner.py
 python seed.py
 ```
 
-### 3. Run Development Server
-```bash
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
-```
+## Production Deployment (100% Free Stack)
 
-Access the application in your browser at `http://127.0.0.1:8000` (Admin panel at `/admin.html`).
+Deploy **Website + API** on **Render**, **Database** on **Neon**, **Images** on **Cloudinary**, and keep it 24/7 awake with **UptimeRobot**.
+
+👉 See the complete step-by-step instructions in [DEPLOYMENT.md](DEPLOYMENT.md).

@@ -64,7 +64,7 @@ class ProductImage(Base):
     __tablename__ = "product_images"
     id: Mapped[int] = mapped_column(primary_key=True)
     product_id: Mapped[int] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"))
-    filename: Mapped[str] = mapped_column(String(120))
+    filename: Mapped[str] = mapped_column(String(500))
     is_cover: Mapped[bool] = mapped_column(Boolean, default=False)
     sort_order: Mapped[int] = mapped_column(Integer, default=0)
     product: Mapped[Product] = relationship(back_populates="images")
@@ -75,7 +75,7 @@ class Flyer(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String(120), default="")
     subtitle: Mapped[str] = mapped_column(String(250), default="")
-    image: Mapped[str] = mapped_column(String(120))
+    image: Mapped[str] = mapped_column(String(500))
     link: Mapped[str] = mapped_column(String(300), default="")
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     sort_order: Mapped[int] = mapped_column(Integer, default=0)

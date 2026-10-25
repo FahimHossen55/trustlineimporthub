@@ -1,23 +1,50 @@
 """Trust Line Import HUB - FastAPI application entry point."""
 import os
 
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
+from sqlalchemy import select
 
 from . import config
-from .database import Base, engine
+from .database import Base, SessionLocal, engine
+from .models import Owner
 from .routers import admin, auth, public
-
-Base.metadata.create_all(bind=engine)
+from .security import hash_password
 
 SHOW_DOCS = os.getenv("SHOW_DOCS", "false").lower() == "true"
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Automatically initialize tables on start
+    Base.metadata.create_all(bind=engine)
+    # Ensure admin owner account exists
+    db = SessionLocal()
+    try:
+        if not db.scalar(select(Owner)):
+            username = os.getenv("ADMIN_USERNAME", "shahin")
+            password = os.getenv("ADMIN_PASSWORD", "Shahin@2026!")
+            full_name = os.getenv("ADMIN_FULL_NAME", "Shahin Perveg")
+            db.add(Owner(username=username, full_name=full_name, password_hash=hash_password(password)))
+            db.commit()
+            print(f"[OK] Initial owner account created: Username '{username}'")
+    except Exception as e:
+        db.rollback()
+        print(f"[WARN] Startup owner check: {e}")
+    finally:
+        db.close()
+    yield
+
 
 app = FastAPI(
     title="Trust Line Import HUB API",
     docs_url="/api/docs" if SHOW_DOCS else None,
     redoc_url=None,
     openapi_url="/api/openapi.json" if SHOW_DOCS else None,
+    lifespan=lifespan,
 )
 
 CSP = (
@@ -25,7 +52,7 @@ CSP = (
     "script-src 'self'; "
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
     "font-src 'self' https://fonts.gstatic.com; "
-    "img-src 'self' data: blob:; "
+    "img-src 'self' data: blob: https://res.cloudinary.com; "
     "connect-src 'self'; "
     "frame-ancestors 'none'; "
     "base-uri 'self'; "
@@ -57,6 +84,13 @@ async def security_headers(request: Request, call_next):
 async def unhandled(_: Request, exc: Exception):
     # Never leak stack traces to the client
     return JSONResponse(status_code=500, content={"detail": "Internal server error"})
+
+
+@app.get("/health", tags=["system"])
+@app.get("/api/health", tags=["system"])
+async def health():
+    """Lightweight keep-alive health check for UptimeRobot and Render."""
+    return {"status": "ok", "service": "Trust Line Import HUB"}
 
 
 app.include_router(auth.router)
