@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Owner Panel | Trust Line Import HUB</title>
+  <meta name="description" content="Secure owner panel">
+  <meta name="theme-color" content="#0B1F44">
+  <link rel="icon" href="assets/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin">
+
+  <!-- ============ LOGIN ============ -->
+  <section class="login" id="loginView" hidden>
+    <div class="login-bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><div class="grid-lines"></div></div>
+    <form class="login-card" id="loginForm" autocomplete="on">
+      <img src="assets/logo-mark.png" alt="" class="login-logo">
+      <h1>Owner Panel</h1>
+      <p>Trust Line Import HUB · Secure sign-in</p>
+      <label class="fld"><span>Username</span>
+        <input name="username" id="lUser" autocomplete="username" required minlength="3" maxlength="50"></label>
+      <label class="fld"><span>Password</span>
+        <div class="pw-wrap"><input name="password" id="lPass" type="password" autocomplete="current-password" required maxlength="128">
+          <button type="button" class="pw-eye" id="pwEye" aria-label="Show password">👁</button></div></label>
+      <div class="login-err" id="loginErr" role="alert"></div>
+      <button class="btn btn-gold btn-block lg" id="loginBtn" type="submit">Sign in securely 🔒</button>
+      <small class="login-note">🛡️ Protected by encrypted session, brute-force lock & auto sign-out.</small>
+      <a href="index.html" class="back-site">← Back to website</a>
+    </form>
+  </section>
+
+  <!-- ============ APP ============ -->
+  <div class="app" id="appView" hidden>
+    <div class="side-mask" id="sideMask"></div>
+    <aside class="side" id="side">
+      <div class="side-head-mob">
+        <a href="index.html" class="brand light" target="_blank" rel="noopener"><img src="assets/logo-mark.png" alt="" width="42" height="42"><span class="brand-text"><b><i>Trust</i>Line</b><small>OWNER PANEL</small></span></a>
+        <button class="icon-btn side-close-btn" id="sideClose" aria-label="Close menu">✕</button>
+      </div>
+      <nav class="side-nav">
+        <button class="active" data-view="dashboard"><span>📊</span>Dashboard</button>
+        <button data-view="products"><span>📦</span>Products</button>
+        <button data-view="flyers"><span>🖼️</span>Flyers</button>
+        <button data-view="categories"><span>🗂️</span>Categories</button>
+        <button data-view="security"><span>🔐</span>Security</button>
+      </nav>
+      <div class="side-foot">
+        <a href="index.html" target="_blank" rel="noopener" class="side-link">🌐 View website</a>
+        <button class="side-link" id="logoutBtn">⏻ Sign out</button>
+      </div>
+    </aside>
+
+    <!-- Mobile Admin Bottom Navigation Bar -->
+    <nav class="admin-bottom-nav" id="adminBottomNav" aria-label="Owner Navigation">
+      <button class="ab-item active" data-view="dashboard">
+        <span class="ab-ico">📊</span>
+        <span>Dashboard</span>
+      </button>
+      <button class="ab-item" data-view="products">
+        <span class="ab-ico">📦</span>
+        <span>Products</span>
+      </button>
+      <button class="ab-item" data-view="flyers">
+        <span class="ab-ico">🖼️</span>
+        <span>Flyers</span>
+      </button>
+      <button class="ab-item" data-view="categories">
+        <span class="ab-ico">🗂️</span>
+        <span>Categories</span>
+      </button>
+      <button class="ab-item" data-view="security">
+        <span class="ab-ico">🔐</span>
+        <span>Security</span>
+      </button>
+    </nav>
+
+    <main class="main">
+      <header class="topbar-a">
+        <button class="burger-a" id="sideToggle" aria-label="Menu">☰</button>
+        <h2 id="viewTitle">Dashboard</h2>
+        <div class="me"><div class="me-av" id="meAv">SP</div><div><b id="meName">Shahin Perveg</b><small>Owner</small></div></div>
+      </header>
+
+      <!-- Dashboard -->
+      <section class="view" id="v-dashboard">
+        <div class="welcome">
+          <div><h3>Welcome back, <span id="welcomeName">Shahin</span> 👋</h3><p>Here's what's happening in your store today.</p></div>
+          <button class="btn btn-gold" data-goto="products" data-new="1">+ Add New Product</button>
+        </div>
+        <div class="stats" id="stats"></div>
+        <div class="dash-grid">
+          <div class="panel"><h4>🔥 Most viewed products</h4><div id="topViewed"></div></div>
+          <div class="panel"><h4>⚠️ Needs attention</h4><div id="attention"></div></div>
+        </div>
+      </section>
+
+      <!-- Products -->
+      <section class="view" id="v-products" hidden>
+        <div class="bar">
+          <div class="search-box"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="pSearch" type="search" placeholder="Search products…"></div>
+          <select id="pFilter"><option value="">All</option><option value="in_stock">In stock</option><option value="low_stock">Low stock</option><option value="out_of_stock">Out of stock</option><option value="upcoming">Upcoming / Pre-order</option></select>
+          <button class="btn btn-gold" id="newProduct">+ Add Product</button>
+        </div>
+        <p class="hint">💡 Tip: change <b>price</b> or <b>availability</b> directly in the table — it saves automatically.</p>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead><tr><th></th><th>Product</th><th>Price (৳)</th><th>Availability</th><th>Views</th><th></th></tr></thead>
+            <tbody id="pRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Flyers -->
+      <section class="view" id="v-flyers" hidden>
+        <div class="bar"><p class="hint" style="margin:0">Flyers appear in the homepage slider. Lower order number shows first.</p><button class="btn btn-gold" id="newFlyer">+ Add Flyer</button></div>
+        <div class="fl-grid" id="flGrid"></div>
+      </section>
+
+      <!-- Categories -->
+      <section class="view" id="v-categories" hidden>
+        <div class="panel">
+          <h4>➕ Add New Category</h4>
+          <form class="cat-form" id="catForm">
+            <div class="cat-form-inputs">
+              <input name="icon" maxlength="8" placeholder="🩺 Emoji" class="emoji-in" aria-label="Icon (emoji)">
+              <input name="name" required minlength="2" maxlength="80" placeholder="Category name (e.g. Surgical Items)">
+            </div>
+            <button class="btn btn-gold" type="submit">+ Add Category</button>
+          </form>
+        </div>
+        <div class="panel">
+          <h4>🗂️ Existing Categories</h4>
+          <div id="catList"></div>
+        </div>
+      </section>
+
+      <!-- Security -->
+      <section class="view" id="v-security" hidden>
+        <div class="dash-grid">
+          <form class="panel" id="pwForm">
+            <h4>🔑 Change password</h4>
+            <label class="fld"><span>Current password</span><input type="password" name="current_password" autocomplete="current-password" required></label>
+            <label class="fld"><span>New password</span><input type="password" name="new_password" id="newPw" autocomplete="new-password" required minlength="10"></label>
+            <div class="pw-meter"><i id="pwMeter"></i></div>
+            <label class="fld"><span>Confirm new password</span><input type="password" name="confirm" autocomplete="new-password" required></label>
+            <button class="btn btn-gold">Update password</button>
+            <small class="muted">Changing your password signs out every other device.</small>
+          </form>
+          <div class="panel">
+            <h4>🛡️ How your panel is protected</h4>
+            <ul class="sec-list">
+              <li><b>Bcrypt hashed password</b> – never stored in plain text.</li>
+              <li><b>HttpOnly secure cookie</b> – scripts can't steal your session.</li>
+              <li><b>SameSite + CSRF header</b> – other websites can't act as you.</li>
+              <li><b>Brute-force lock</b> – 5 wrong tries = 15 min lock.</li>
+              <li><b>Auto sign-out</b> after 2 hours.</li>
+              <li><b>Image sanitising</b> – uploads are re-encoded, metadata stripped.</li>
+              <li><b>Strict security headers</b> – CSP, no iframes, no sniffing.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ============ PRODUCT MODAL ============ -->
+  <div class="modal" id="pModal" hidden>
+    <div class="modal-box lg">
+      <header class="modal-head"><h3 id="pModalTitle">Add product</h3><button class="icon-btn" data-close aria-label="Close">✕</button></header>
+      <form id="pForm" class="modal-body">
+        <div class="form-grid">
+          <label class="fld span2"><span>Product name *</span><input name="name" required minlength="2" maxlength="150"></label>
+          <label class="fld"><span>Category</span><select name="category_id" id="pCat"></select></label>
+          <label class="fld"><span>Brand</span><input name="brand" maxlength="80"></label>
+          <label class="fld"><span>Origin country</span><input name="origin" maxlength="60"></label>
+          <label class="fld"><span>Unit (piece, box, pack…)</span><input name="unit" maxlength="40" value="piece"></label>
+
+          <label class="fld"><span>Price (৳)</span><input name="price" type="number" min="0" step="0.01" placeholder="Leave empty = price on request"></label>
+          <label class="fld"><span>Old price (৳) – shows discount</span><input name="old_price" type="number" min="0" step="0.01"></label>
+          <label class="fld"><span>Minimum order qty (MOQ)</span><input name="moq" type="number" min="1" value="1" required></label>
+          <label class="fld"><span>Availability</span>
+            <select name="availability" id="pAvail">
+              <option value="in_stock">✅ In stock</option><option value="low_stock">🟠 Low stock</option>
+              <option value="out_of_stock">⛔ Out of stock</option><option value="upcoming">🚢 Upcoming (Pre-order)</option>
+            </select></label>
+          <label class="fld span2" id="arrivalFld"><span>Expected arrival (for pre-order)</span><input name="expected_arrival" maxlength="60" placeholder="e.g. December 2026"></label>
+
+          <label class="fld span2"><span>Short description (shown on cards)</span><input name="short_description" maxlength="300"></label>
+          <label class="fld span2"><span>Full description</span><textarea name="description" rows="5" maxlength="8000"></textarea></label>
+          <label class="fld span2"><span>Specifications – one per line, like <code>Warranty: 2 years</code></span><textarea name="specs" rows="4" maxlength="4000"></textarea></label>
+
+          <div class="toggles span2">
+            <label class="tgl"><input type="checkbox" name="show_price" checked><i></i>Show price publicly</label>
+            <label class="tgl"><input type="checkbox" name="is_featured"><i></i>Featured</label>
+            <label class="tgl"><input type="checkbox" name="is_active" checked><i></i>Visible on website</label>
+          </div>
+        </div>
+
+        <div class="img-mgr">
+          <h4>Product images <small>(max 10 · first = cover · JPG/PNG/WEBP up to 6 MB)</small></h4>
+          <div class="img-grid" id="imgGrid"></div>
+          <label class="drop" id="drop">
+            <input type="file" id="imgInput" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden>
+            <span>📤</span><b>Click or drag images here</b><small id="dropNote">Images upload when you save</small>
+          </label>
+        </div>
+
+        <footer class="modal-foot">
+          <button type="button" class="btn btn-outline" data-close>Cancel</button>
+          <button type="submit" class="btn btn-gold" id="pSave">Save product</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ FLYER MODAL ============ -->
+  <div class="modal" id="fModal" hidden>
+    <div class="modal-box">
+      <header class="modal-head"><h3 id="fModalTitle">Add flyer</h3><button class="icon-btn" data-close aria-label="Close">✕</button></header>
+      <form id="fForm" class="modal-body">
+        <label class="drop flyer-drop" id="fDrop">
+          <input type="file" name="image" id="fImg" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+          <img id="fPreview" alt="" hidden>
+          <span>🖼️</span><b>Click to choose flyer image</b><small>Recommended square or 4:5 · up to 6 MB</small>
+        </label>
+        <label class="fld"><span>Title (optional)</span><input name="title" maxlength="120"></label>
+        <label class="fld"><span>Subtitle (optional)</span><input name="subtitle" maxlength="250"></label>
+        <div class="form-grid">
+          <label class="fld"><span>Button link (optional)</span><input name="link" maxlength="300" placeholder="#products or https://…"></label>
+          <label class="fld"><span>Display order</span><input name="sort_order" type="number" value="0"></label>
+        </div>
+        <label class="tgl"><input type="checkbox" name="is_active" checked><i></i>Show on website</label>
+        <footer class="modal-foot">
+          <button type="button" class="btn btn-outline" data-close>Cancel</button>
+          <button type="submit" class="btn btn-gold" id="fSave">Save flyer</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ CONFIRM ============ -->
+  <div class="modal" id="cModal" hidden>
+    <div class="modal-box sm">
+      <div class="modal-body confirm">
+        <div class="confirm-ico">🗑️</div>
+        <h3 id="cTitle">Delete?</h3>
+        <p id="cText" class="muted">This cannot be undone.</p>
+        <div class="modal-foot center">
+          <button class="btn btn-outline" data-close>Cancel</button>
+          <button class="btn btn-danger" id="cOk">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

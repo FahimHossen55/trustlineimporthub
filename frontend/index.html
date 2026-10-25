@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trust Line Import HUB | Wholesale Medical Equipment Supplier in Bangladesh</title>
+  <meta name="description" content="Trust Line Import HUB – wholesale importer of genuine medical devices: BP monitors, glucose meters, hospital furniture, rehab equipment. Order instantly on WhatsApp with Shahin Perveg.">
+  <meta property="og:title" content="Trust Line Import HUB – Trusted Imports, Trusted Business">
+  <meta property="og:description" content="Wholesale medical equipment in Bangladesh. Browse products & order on WhatsApp.">
+  <meta property="og:image" content="/assets/logo.jpg">
+  <meta name="theme-color" content="#0B1F44">
+  <link rel="icon" href="assets/logo-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="siteHeader"></header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="home">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+        <div class="grid-lines"></div>
+      </div>
+      <div class="container hero-in">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="pulse"></span> Wholesale Medical Importer · Bangladesh</span>
+          <h1>Genuine Medical Equipment,<br><span class="gold-text">Wholesale Prices.</span></h1>
+          <p class="lead">Trust Line Import HUB brings certified diagnostic devices, hospital furniture and rehab equipment directly to pharmacies, clinics and distributors. No login, no hassle — just pick and order on WhatsApp.</p>
+          <div class="hero-cta">
+            <a href="#products" class="btn btn-gold lg">Browse Products <span class="arrow">→</span></a>
+            <a href="#preorder" class="btn btn-glass lg">🚢 Upcoming Pre-Orders</a>
+          </div>
+          <div class="hero-search">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="heroSearch" type="search" placeholder="Search BP monitor, glucose meter, bed…" aria-label="Search products">
+            <button id="heroSearchBtn" class="btn btn-gold sm">Search</button>
+          </div>
+          <div class="hero-stats">
+            <div><b data-count="stat-products">0</b><span>Products</span></div>
+            <div><b>100%</b><span>Genuine</span></div>
+            <div><b>24/7</b><span>WhatsApp</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="flyer-stage" id="flyerStage">
+            <div class="flyer-track" id="flyerTrack">
+              <div class="flyer-skel shimmer"></div>
+            </div>
+            <button class="fl-nav prev" id="flPrev" aria-label="Previous flyer">‹</button>
+            <button class="fl-nav next" id="flNext" aria-label="Next flyer">›</button>
+            <div class="fl-dots" id="flDots"></div>
+            <div class="fl-progress"><i id="flProgress"></i></div>
+          </div>
+          <div class="float-card fc1"><span>✅</span><div><b>Certified</b><small>CE · ISO products</small></div></div>
+          <div class="float-card fc2"><span>🚚</span><div><b>Nationwide</b><small>Delivery all over BD</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MARQUEE ================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>✦ 100% Genuine Brands</span><span>✦ Wholesale Pricing</span><span>✦ Bulk Order Discounts</span>
+        <span>✦ Fast WhatsApp Response</span><span>✦ Nationwide Delivery</span><span>✦ Pre-Order Upcoming Shipments</span>
+        <span>✦ 100% Genuine Brands</span><span>✦ Wholesale Pricing</span><span>✦ Bulk Order Discounts</span>
+        <span>✦ Fast WhatsApp Response</span><span>✦ Nationwide Delivery</span><span>✦ Pre-Order Upcoming Shipments</span>
+      </div>
+    </div>
+
+    <!-- ================= CATEGORIES ================= -->
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="kicker">Shop by Category</span>
+          <h2>Find exactly what your <span class="u-gold">business</span> needs</h2>
+        </div>
+        <div class="cat-grid" id="catGrid"></div>
+      </div>
+    </section>
+
+    <!-- ================= PRODUCTS ================= -->
+    <section class="section section-soft" id="products">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="kicker">Our Products</span>
+          <h2>Wholesale <span class="u-gold">catalog</span></h2>
+          <p>Prices shown are wholesale per unit. Tap <b>Order</b> to message us directly, or add multiple items to your <b>Order List</b>.</p>
+        </div>
+
+        <div class="toolbar reveal" id="toolbar">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="search" type="search" placeholder="Search products or brands…" aria-label="Search">
+          </div>
+          <select id="fAvail" aria-label="Availability">
+            <option value="">All availability</option>
+            <option value="available">Available now</option>
+            <option value="in_stock">In stock</option>
+            <option value="low_stock">Low stock</option>
+            <option value="out_of_stock">Out of stock</option>
+          </select>
+          <select id="fSort" aria-label="Sort">
+            <option value="newest">Newest first</option>
+            <option value="price_asc">Price: low → high</option>
+            <option value="price_desc">Price: high → low</option>
+            <option value="name">Name A–Z</option>
+          </select>
+          <div class="view-toggle" role="group" aria-label="View">
+            <button class="active" data-view="grid" aria-label="Grid view">▦</button>
+            <button data-view="list" aria-label="List view">☰</button>
+          </div>
+        </div>
+        <div class="chips" id="catChips"></div>
+
+        <div class="result-info" id="resultInfo"></div>
+        <div class="grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <!-- ================= PRE-ORDER ================= -->
+    <section class="section preorder" id="preorder">
+      <div class="po-glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="sec-head light reveal">
+          <span class="kicker kicker-gold">🚢 Upcoming Shipments</span>
+          <h2>Pre-Order <span class="gold-text">before it arrives</span></h2>
+          <p>Reserve your quantity from our next import shipment. Contact <b>Shahin Perveg</b> on WhatsApp to confirm your booking — first come, first served.</p>
+        </div>
+        <div class="po-grid" id="preorderGrid"></div>
+        <div class="po-cta reveal">
+          <div>
+            <h3>Looking for a product we don't list?</h3>
+            <p>We import on demand. Tell us the item & quantity — we'll source it for you.</p>
+          </div>
+          <a class="btn btn-wa lg" target="_blank" rel="noopener" id="requestImport">Request a Product</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW TO ORDER ================= -->
+    <section class="section" id="how">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="kicker">Simple Process</span>
+          <h2>Order in <span class="u-gold">3 easy steps</span></h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal" style="--d:0ms"><div class="step-n">1</div><div class="step-ico">🔍</div><h3>Browse</h3><p>Explore products with photos, details, wholesale price and minimum order quantity.</p></div>
+          <div class="step reveal" style="--d:120ms"><div class="step-n">2</div><div class="step-ico">🛒</div><h3>Add to Order List</h3><p>Choose quantities for one or many products. No account or login needed.</p></div>
+          <div class="step reveal" style="--d:240ms"><div class="step-n">3</div><div class="step-ico">💬</div><h3>Send on WhatsApp</h3><p>Your order is sent as a neat, structured message to Shahin Perveg for quick confirmation.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section section-soft" id="about">
+      <div class="container about">
+        <div class="about-card reveal">
+          <img src="assets/logo.jpg" alt="Trust Line Import HUB logo card" loading="lazy">
+        </div>
+        <div class="about-copy reveal">
+          <span class="kicker">About Us</span>
+          <h2>Trusted Imports, <span class="u-gold">Trusted Business</span></h2>
+          <p>Trust Line Import HUB is a Bangladesh-based importer and wholesaler of medical devices and healthcare equipment, led by <b>Shahin Perveg</b>. We work directly with international manufacturers so our partners get authentic products at honest wholesale prices.</p>
+          <ul class="ticks">
+            <li><b>Authentic products</b> — sourced from verified manufacturers.</li>
+            <li><b>Wholesale rates</b> — best prices for pharmacies, clinics & distributors.</li>
+            <li><b>Personal service</b> — talk directly with the owner, no middlemen.</li>
+            <li><b>On-demand import</b> — need something special? We'll bring it.</li>
+          </ul>
+          <div class="owner">
+            <div class="owner-av">SP</div>
+            <div><b>Shahin Perveg</b><small>Founder & Owner</small></div>
+            <a class="btn btn-wa sm" target="_blank" rel="noopener" id="ownerWa">Message</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-band reveal">
+          <div class="cb-copy">
+            <span class="kicker kicker-gold">Get in touch</span>
+            <h2>Ready to order in bulk?</h2>
+            <p>Message us on WhatsApp for prices, stock confirmation and delivery details. We usually reply within minutes.</p>
+          </div>
+          <div class="cb-cards">
+            <a class="cb-card" id="cWa" target="_blank" rel="noopener"><span class="cb-ico wa">💬</span><div><small>WhatsApp</small><b>01684-822605</b></div></a>
+            <a class="cb-card" href="tel:+8801684822605"><span class="cb-ico">📞</span><div><small>Call us</small><b>+880 1684-822605</b></div></a>
+            <a class="cb-card" href="mailto:shahinperveg56@gmail.com"><span class="cb-ico">✉️</span><div><small>Email</small><b>shahinperveg56@gmail.com</b></div></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="siteFooter"></footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
