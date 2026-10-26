@@ -5,26 +5,21 @@ Deploy **Trust Line Import HUB** with high availability, persistent database, CD
 | Component | Provider | Tier / Cost | What it does |
 |---|---|---|---|
 | **Website + API** | [Render](https://render.com) | Free | Hosts FastAPI backend + Vanilla frontend |
-| **Database** | [Neon](https://neon.tech) | Free | Serverless PostgreSQL with SSL pooling |
+| **Database** | [Supabase](https://supabase.com) | Free | Serverless PostgreSQL with Session Pooling |
 | **Media & Images** | [Cloudinary](https://cloudinary.com) | Free (25GB) | High-speed global CDN for product & flyer images |
-| **Keep-Awake** | [UptimeRobot](https://uptimerobot.com) | Free | Pings `/health` every 5-10 mins to prevent idle spin-down |
+| **Keep-Awake** | [UptimeRobot](https://uptimerobot.com) | Free | Pings `/health` & `/health/db` every 5 mins to prevent idle spin-down |
 
 ---
 
-## Step 1: Create Neon PostgreSQL Database (2 minutes)
+## Step 1: Create Supabase PostgreSQL Database (2 minutes)
 
-1. Go to [neon.tech](https://neon.tech) and sign up / sign in (Free).
-2. Click **Create Project**.
-   - Project Name: `trustline-db`
-   - Postgres version: Default (16 or 17)
-   - Region: Select the region closest to your users or Render region (e.g., `US East (Ohio / N. Virginia)` or `Singapore / Frankfurt`).
-3. Once created, in the Neon Dashboard under **Connection Details**:
-   - Select **Pooled connection** (recommended) or direct.
-   - Copy the connection string. It will look like:
-     ```text
-     postgresql://neondb_owner:npg_xxxxxx@ep-xxxx-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require
-     ```
-   *(Keep this string handy for Step 3).*
+1. Go to [supabase.com](https://supabase.com) and create a free project named `trustline`.
+2. Save your database password.
+3. Under **Connect** → **Direct** → **Session pooler** (port 5432), copy the connection string:
+   ```text
+   postgresql://postgres.<project-ref>:[YOUR-PASSWORD]@aws-0-<region>.pooler.supabase.com:5432/postgres
+   ```
+   *(Keep this string handy for Render DATABASE_URL).*
 
 ---
 
