@@ -86,15 +86,15 @@ async def unhandled(_: Request, exc: Exception):
     return JSONResponse(status_code=500, content={"detail": "Internal server error"})
 
 
-@app.get("/health", tags=["system"])
-@app.get("/api/health", tags=["system"])
+@app.api_route("/health", methods=["GET", "HEAD"], tags=["system"])
+@app.api_route("/api/health", methods=["GET", "HEAD"], tags=["system"])
 async def health():
     """Lightweight keep-alive health check for UptimeRobot and Render."""
     return {"status": "ok", "service": "Trust Line Import HUB"}
 
 
-@app.get("/health/db", tags=["system"])
-@app.get("/api/health/db", tags=["system"])
+@app.api_route("/health/db", methods=["GET", "HEAD"], tags=["system"])
+@app.api_route("/api/health/db", methods=["GET", "HEAD"], tags=["system"])
 def health_db():
     """Health check that runs a trivial query so the database stays active (Supabase free tier)."""
     try:
