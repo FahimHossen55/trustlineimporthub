@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
-from sqlalchemy import select
+from sqlalchemy import select, text
 
 from . import config
 from .database import Base, SessionLocal, engine
@@ -91,6 +91,18 @@ async def unhandled(_: Request, exc: Exception):
 async def health():
     """Lightweight keep-alive health check for UptimeRobot and Render."""
     return {"status": "ok", "service": "Trust Line Import HUB"}
+
+
+@app.get("/health/db", tags=["system"])
+@app.get("/api/health/db", tags=["system"])
+def health_db():
+    """Health check that runs a trivial query so the database stays active (Supabase free tier)."""
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+        return {"status": "ok", "database": "ok"}
+    except Exception:
+        return JSONResponse(status_code=503, content={"status": "error", "database": "unreachable"})
 
 
 app.include_router(auth.router)
